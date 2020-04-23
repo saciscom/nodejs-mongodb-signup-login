@@ -1,0 +1,153 @@
+{
+	"info": {
+		"_postman_id": "2190bd0a-1549-45b0-bb74-f2f443d73221",
+		"name": "Authentication Sample",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:8080/auth/signup",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"User name\", \n\t\"email\": \"test@test.com\", \n\t\"password\": \"12345678\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/auth/signup",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/auth/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"test@test.com\",\n    \"password\": \"12345678\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/auth/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/user/5e9fb720fd12c7393e34189d",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbXBsZUB0ZXNzLmNvbSIsInVzZXJJZCI6IjVlOWZiOWFhYjY5YzRmMzlkNDEzMjY3YyIsImlhdCI6MTU4NzU0NjU5MCwiZXhwIjoxNTg3NTUwMTkwfQ.CKNwi1NFaFUizE1VCLvgoJJcVaEZt-oVE-8Qsku8OuI",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/user/5e9fb720fd12c7393e34189d",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"5e9fb720fd12c7393e34189d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/user/forgotpassword",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"test@test.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/user/forgotpassword",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"forgotpassword"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/user/changepassword",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbXBsZUB0ZXNzLmNvbSIsInVzZXJJZCI6IjVlOWZiOWFhYjY5YzRmMzlkNDEzMjY3YyIsImlhdCI6MTU4NzYwNDQzNywiZXhwIjoxNTkwMTk2NDM3fQ.dI-wnaUe-XUSzel4gwf3gKdLhycUBQVjWLEv48oklTE",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"oldPassword\": \"12345678\",\n    \"newPassword\": \"newPassword\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/user/changepassword",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"changepassword"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
