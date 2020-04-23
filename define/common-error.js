@@ -1,4 +1,4 @@
-const Define = require('../define/define');
+const Define = require('./define');
 
 exports.throwAuthenticateError = () => {
     const error = new Error(Define.errAuthentication);
