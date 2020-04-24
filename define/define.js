@@ -3,10 +3,11 @@ const Config = require('../config');
 exports.errSomethingWhenWrong = 'Something went wrong.'
 exports.errInvalidEmail = 'Please enter a valid email address.';
 exports.errEmailExists = 'Email address already exists.';
-exports.errNameEmpty = 'Name is required.';
+exports.errNameEmpty = 'Name must not be empty.';
 exports.errPasswordLength = (length) => 'Password must be at least ' + length + ' characters.';
 exports.errUserNotExists = 'User not found.';
-exports.errPasswordWrong = 'Invalid login credentials';
+exports.errLoginInvalid = 'Invalid login credentials.';
+exports.errPasswordWrong = 'Incorrect password.';
 exports.errValidationFailed = 'Validation failed.'
 exports.errAuthentication = 'Authentication error.'
 exports.errAuthenticationExpired = 'Authentication expired.'

@@ -9,6 +9,7 @@ const CommonError = require('../define/common-error');
 const Response = require('../define/response');
 const PasswordRandom = require('../utils/password-random');
 const Nodemailer = require('nodemailer');
+const FileHelper = require('../utils/file');
 const Ejs = require('ejs');
 
 const transporter = Nodemailer.createTransport({
@@ -30,6 +31,38 @@ exports.getUserInfo = (req, res, next) => {
                 CommonError.throwError401(Define.errUserNotExists);
             }
             return user;
+        })
+        .then(user => {
+            Response.send(res, ModelUtil.getUser(user));
+        })
+        .catch(err => next(err));
+}
+
+exports.putUpdateUserInfo = (req, res, next) => {
+    ValidatorUtil.catchValidation(req);
+    const userId = req.userId;
+    const name = req.body.name;
+    const files = req.files;
+    const hasAvatar = (files && files.avatar && files.avatar[0]);
+    let avatarUrl = hasAvatar ? files.avatar[0].path : null;
+
+    User.findOne({ _id: userId })
+        .then(user => {
+            if (!user) {
+                throw Error(Define.errUserNotExists);
+            }
+
+            if (hasAvatar) {
+                console.log(user.avatar);
+                FileHelper.deleteFile(user.avatar);
+                user.avatar = avatarUrl;
+            }
+
+            if (name) {
+                user.name = name;
+            }
+
+            return user.save();
         })
         .then(user => {
             Response.send(res, ModelUtil.getUser(user));
@@ -86,8 +119,8 @@ exports.putChangePassword = (req, res, next) => {
             if (!user) {
                 throw Error(Define.errUserNotExists);
             }
-
             loadedUser = user;
+            console.log(oldPassword);
             return Bcrypt.compare(oldPassword, user.password);
         })
         .then(isEqual => {

@@ -47,6 +47,15 @@ exports.loginValidator = [
         .withMessage(Define.errPasswordLength(config.PASSWORD_MIN_LENGTH))
 ]
 
+exports.updateUserValidator = [
+    body('name')
+        .optional()
+        .trim()
+        .not()
+        .isEmpty()
+        .withMessage(Define.errNameEmpty)
+]
+
 exports.emailValidator = [
     body('email')
         .isEmail()

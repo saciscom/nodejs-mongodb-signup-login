@@ -1,7 +1,7 @@
 // project config
-exports.APP_NAME = 'Authenticate App'
-exports.MONGODB_URI = 'Your mongodb uri' // Sample: mongodb+srv://mongouser:SamplePassword@cluster0-ppbsp.mongodb.net/authenticate
-exports.JWT_SECRET = 'Your JWT secret' //This is used to sign and verify JWT tokens, replace with your own secret, it can be any string
+exports.APP_NAME = 'Authenticate App';
+exports.MONGODB_URI = 'Your mongodb uri'; // Sample: mongodb+srv://mongouser:SamplePassword@cluster0-ppbsp.mongodb.net/authenticate
+exports.JWT_SECRET = 'Your JWT secret'; //This is used to sign and verify JWT tokens, replace with your own secret, it can be any string
 
 // user model config
 exports.PASSWORD_HASH_SAIL = 12;

@@ -6,6 +6,8 @@ const isAuth = require('../middleware/is-auth')
 
 const router = express.Router();
 
+router.put('/', isAuth, validator.updateUserValidator, userController.putUpdateUserInfo);
+
 router.post('/forgotpassword', validator.emailValidator, userController.postForgotPassword);
 
 router.put('/changepassword', isAuth, validator.changePasswordValidator, userController.putChangePassword);

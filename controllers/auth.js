@@ -13,13 +13,17 @@ exports.signup = (req, res, next) => {
     const email = req.body.email;
     const name = req.body.name;
     const password = req.body.password;
+    const avatar = req.files.avatar;
+    const hasAvatar = (avatar && avatar[0]);
+    let avatarUrl = hasAvatar ? avatar[0].path : null;
     Bcrypt
         .hash(password, Config.PASSWORD_HASH_SAIL)
         .then(hashedPw => {
             const user = new User({
                 email: email,
                 password: hashedPw,
-                name: name
+                name: name,
+                avatar: avatarUrl
             });
             return user.save();
         })
@@ -51,7 +55,7 @@ exports.login = (req, res, next) => {
         })
         .then(isEqual => {
             if (!isEqual) {
-                const error = new Error(Define.errPasswordWrong);
+                const error = new Error(Define.errLoginInvalid);
                 error.statusCode = 401;
                 throw error;
             }

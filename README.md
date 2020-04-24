@@ -3,8 +3,9 @@ Init a template for login, signup, authentication features.
 
 ## Features
 
-* Signup
+* Signup (with avatar image)
 * Login
+* Update user info
 * Change password
 * Send email - forgot password
 * Get user info
@@ -14,13 +15,14 @@ Init a template for login, signup, authentication features.
 ## Package used in this project
 
 * bcryptjs - Encrypt password
-* body-parser - Parse request body 
+* body-parser - Parse request body
 * ejs - Using for email template
 * express - Node framework
 * express-validator - Validate request
 * jsonwebtoken - Authentication
-* mongodb - Database 
+* mongodb - Database
 * mongoose - Database ORM
+* multer - Multipart file upload
 * nodemailer - Send email
 
 ## Setup
