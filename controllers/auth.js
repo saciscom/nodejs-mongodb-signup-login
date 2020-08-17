@@ -9,8 +9,8 @@ const Config = require('../config');
 const Response = require('../define/response');
 
 exports.signup = async (req, res, next) => {
-    ValidatorUtil.catchValidation(req);
     try {
+        ValidatorUtil.catchValidation(req);
         const email = req.body.email;
         const name = req.body.name;
         const password = req.body.password;

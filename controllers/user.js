@@ -21,9 +21,9 @@ const transporter = Nodemailer.createTransport({
 });
 
 exports.getUserInfo = async (req, res, next) => {
-    ValidatorUtil.catchValidation(req);
-    const requestUserId = req.params.userId;
     try {
+        ValidatorUtil.catchValidation(req);
+        const requestUserId = req.params.userId;
         const user = await User.findOne({ _id: requestUserId })
         if (!user) {
             CommonError.throwError401(Define.errUserNotExists);
@@ -33,13 +33,13 @@ exports.getUserInfo = async (req, res, next) => {
 }
 
 exports.putUpdateUserInfo = async (req, res, next) => {
-    ValidatorUtil.catchValidation(req);
-    const userId = req.userId;
-    const name = req.body.name;
-    const files = req.files;
-    const hasAvatar = (files && files.avatar && files.avatar[0]);
-    let avatarUrl = hasAvatar ? files.avatar[0].path : null;
     try {
+        ValidatorUtil.catchValidation(req);
+        const userId = req.userId;
+        const name = req.body.name;
+        const files = req.files;
+        const hasAvatar = (files && files.avatar && files.avatar[0]);
+        let avatarUrl = hasAvatar ? files.avatar[0].path : null;
         const user = await User.findOne({ _id: userId })
         if (!user) {
             throw Error(Define.errUserNotExists);
@@ -61,10 +61,10 @@ exports.putUpdateUserInfo = async (req, res, next) => {
 }
 
 exports.postForgotPassword = async (req, res, next) => {
-    ValidatorUtil.catchValidation(req);
-    const email = req.body.email;
-    const newPassword = PasswordRandom(8);
     try {
+        ValidatorUtil.catchValidation(req);
+        const email = req.body.email;
+        const newPassword = PasswordRandom(8);
         const user = await User.findOne({ email: email })
         if (!user) {
             throw Error(Define.errUserNotExists);
@@ -93,11 +93,11 @@ const sendForgotPasswordEmail = (email, newPassword, name) => {
 }
 
 exports.putChangePassword = async (req, res, next) => {
-    ValidatorUtil.catchValidation(req);
-    const oldPassword = req.body.oldPassword;
-    const newPassword = req.body.newPassword;
-    const userId = req.userId;
     try {
+        ValidatorUtil.catchValidation(req);
+        const oldPassword = req.body.oldPassword;
+        const newPassword = req.body.newPassword;
+        const userId = req.userId;
         const user = await User.findOne({ _id: userId })
 
         if (!user) {
