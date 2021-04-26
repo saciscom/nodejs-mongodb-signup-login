@@ -12,13 +12,15 @@ const errorController = require('./controllers/error');
 
 const imageFile = require('./utils/file');
 const MONGODB_URI = require('./config').MONGODB_URI
+const PORT = require('./config').PORT
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(bodyParser.urlencoded({extended: false}));
 
 app.use(
-    multer({ storage: imageFile.imageFileStorage, fileFilter: imageFile.imageFileFilter }).fields([
-        { name: 'avatar', maxCount: 1 },
-        { name: 'file', maxCount: 8 }
+    multer({storage: imageFile.imageFileStorage, fileFilter: imageFile.imageFileFilter}).fields([
+        {name: 'avatar', maxCount: 1},
+        {name: 'file', maxCount: 8}
     ])
 );
 
@@ -40,7 +42,7 @@ app.use(errorController.error500);
 mongoose.connect(MONGODB_URI)
     .then(result => {
         console.log('connect success');
-        app.listen(8080);
+        app.listen(PORT);
     })
     .catch(err => {
         console.log(err);

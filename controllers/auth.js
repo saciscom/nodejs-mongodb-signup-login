@@ -14,7 +14,7 @@ exports.signup = async (req, res, next) => {
         const email = req.body.email;
         const name = req.body.name;
         const password = req.body.password;
-        const avatar = req.files.avatar;
+        const avatar = req.files ? req.files.avatar : null;
         const hasAvatar = (avatar && avatar[0]);
         let avatarUrl = hasAvatar ? avatar[0].path : null;
         const hashedPw = await Bcrypt.hash(password, Config.PASSWORD_HASH_SAIL)
@@ -31,7 +31,8 @@ exports.signup = async (req, res, next) => {
             err.statusCode = 500;
         }
         next(err);
-    };
+    }
+    ;
 }
 
 exports.login = async (req, res, next) => {
@@ -39,7 +40,7 @@ exports.login = async (req, res, next) => {
     const email = req.body.email;
     const password = req.body.password;
     try {
-        const user = await User.findOne({ email: email })
+        const user = await User.findOne({email: email})
         if (!user) {
             const error = new Error(Define.errUserNotExists);
             error.statusCode = 401;
@@ -59,5 +60,8 @@ exports.login = async (req, res, next) => {
         }
         Response.send(res, responseData);
 
-    } catch (err) { next(err) };
+    } catch (err) {
+        next(err)
+    }
+    ;
 }

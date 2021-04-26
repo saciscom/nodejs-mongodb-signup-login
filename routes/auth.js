@@ -5,7 +5,7 @@ const validator = require('../utils/validator');
 
 const router = express.Router();
 
-router.put('/signup', validator.signupValidator, authController.signup);
+router.post('/signup', validator.signupValidator, authController.signup);
 
 router.post('/login', validator.loginValidator, authController.login);
 
